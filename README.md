@@ -12,6 +12,8 @@ We look forward to pull requests to document the development of this project.
 
 * [Visual Studio](https://visualstudio.microsoft.com/) - C# Editor from Microsoft
 * [Xbox One](https://afflnk.microsoft.com/c/1256010/476314/7806/) - Testing the application
+* [Microsoft.NETCore.UniversalWindowsPlatform](https://github.com/Microsoft/dotnet/blob/master/releases/UWP/README.md) - Net Core for UWP Apps
+* [MyToolkit](https://github.com/RSuter/MyToolkit) - Toolkit for Youtube
 
 ## Contributors
 
