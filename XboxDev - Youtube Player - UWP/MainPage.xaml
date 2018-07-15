@@ -8,8 +8,76 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Grid>
-        <WebView Source="https://www.youtube.com/embed/1Au4EI2HqFE?autoplay=1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-        </WebView>
+     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
+                   Text="YouTube videos"
+                    x:Name="TxtVideoName"
+                           Grid.Row="1"
+                   Margin="20 20 0 0" />
+
+        <Grid Margin="20"
+              Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid VerticalAlignment="Top"
+                  Margin="0 20 20 20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <MediaElement x:Name="Player" />
+
+
+                <!--COMMANDS BAR-->
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="2"
+                            HorizontalAlignment="Center">
+                    <AppBarButton Label="Previous"
+                                  Icon="Previous" x:Name="Previous"/>
+                    <AppBarButton Label="Play"
+                                  Icon="Play" x:Name="Play"/>
+                    <AppBarButton Label="Next"
+                                  Icon="Next" x:Name="Next"/>
+                    <AppBarButton Label="FullScreen"
+                                  Icon="FullScreen" x:Name="FullScreen"/>
+                </StackPanel>
+            </Grid>
+
+            <!--VIDEOS LISTE-->
+            <ListView x:Name="LVVideos"
+                      Grid.Column="1"
+                      VerticalAlignment="Top"
+                      ItemClick="LVVideos_ItemClick"
+                      SelectionMode="None"
+                      IsItemClickEnabled="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Image Source="{Binding ThumbnailUri}"
+                                   Height="250"
+                                   Width="250" />
+                            <TextBlock HorizontalAlignment="Center"
+                                       VerticalAlignment="Top"
+                                       Text="{Binding Title}"
+                                       FontSize="11"
+                                       TextWrapping="WrapWholeWords" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </Grid>
+
     </Grid>
 </Page>
