@@ -6,9 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    UseSystemFocusVisuals="True"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
+          Padding="48,24">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -16,10 +18,10 @@
         </Grid.RowDefinitions>
 
         <TextBlock Style="{StaticResource SubtitleTextBlockStyle}"
-                   Text="YouTube videos"
-                    x:Name="TxtVideoName"
-                           Grid.Row="1"
-                   Margin="20 20 0 0" />
+                   Text="YouTube Videos"
+                   x:Name="TxtVideoName"
+                   Grid.Row="0"
+                   Margin="20" />
 
         <Grid Margin="20"
               Grid.Row="1">
@@ -29,41 +31,57 @@
             </Grid.ColumnDefinitions>
 
             <Grid VerticalAlignment="Top"
-                  Margin="0 20 20 20">
+                  Margin="0 0 20 0">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <MediaElement x:Name="Player" />
+                <MediaElement x:Name="Player"
+                              AutoPlay="False" />
 
-
-                <!--COMMANDS BAR-->
                 <StackPanel Orientation="Horizontal"
-                            Grid.Row="2"
-                            HorizontalAlignment="Center">
+                            Grid.Row="1"
+                            HorizontalAlignment="Center"
+                            Margin="0 10 0 0">
                     <AppBarButton Label="Previous"
-                                  Icon="Previous" x:Name="Previous"/>
+                                  MinHeight="48"
+                                  Icon="Previous"
+                                  x:Name="Previous"
+                                  Click="Previous_Click"
+                                  XYFocusRight="Play" />
                     <AppBarButton Label="Play"
-                                  Icon="Play" x:Name="Play"/>
+                                  MinHeight="48"
+                                  Icon="Play"
+                                  x:Name="Play"
+                                  Click="Play_Click"
+                                  XYFocusLeft="Previous"
+                                  XYFocusRight="Next" />
                     <AppBarButton Label="Next"
-                                  Icon="Next" x:Name="Next"/>
+                                  MinHeight="48"
+                                  Icon="Next"
+                                  x:Name="Next"
+                                  Click="Next_Click"
+                                  XYFocusLeft="Play"
+                                  XYFocusRight="FullScreen" />
                     <AppBarButton Label="FullScreen"
-                                  Icon="FullScreen" x:Name="FullScreen"/>
+                                  MinHeight="48"
+                                  Icon="FullScreen"
+                                  x:Name="FullScreen"
+                                  Click="FullScreen_Click"
+                                  XYFocusLeft="Next" />
                 </StackPanel>
             </Grid>
 
-            <!--VIDEOS LISTE-->
             <ListView x:Name="LVVideos"
                       Grid.Column="1"
                       VerticalAlignment="Top"
                       ItemClick="LVVideos_ItemClick"
-                      SelectionMode="None"
+                      SelectionMode="Single"
                       IsItemClickEnabled="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <StackPanel Margin="0 0 0 10">
                             <Image Source="{Binding ThumbnailUri}"
                                    Height="250"
                                    Width="250" />
